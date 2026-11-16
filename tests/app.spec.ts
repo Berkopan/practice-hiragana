@@ -83,15 +83,33 @@ test('the complete app and model work after an offline reload', async ({ page, c
 
 test('phone and tablet layouts stay within the viewport and the pad stays square', async ({ page }) => {
   await page.goto('./');
-  for (const width of [375, 768, 1024]) {
-    await page.setViewportSize({ width, height: 1100 });
+  const viewports = [
+    { width: 375, height: 1100 },
+    { width: 768, height: 1100 },
+    { width: 1024, height: 1100 },
+    { width: 1280, height: 1000 },
+    { width: 1194, height: 834 },
+    { width: 1194, height: 800 },
+  ];
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport);
     await expect(page.locator('.writing-pad')).toBeVisible();
     const geometry = await page.evaluate(() => {
       const pad = document.querySelector('.pad-canvas')!.getBoundingClientRect();
-      return { page: document.documentElement.scrollWidth, viewport: innerWidth, width: pad.width, height: pad.height };
+      const submit = document.querySelector('.submit-row')!.getBoundingClientRect();
+      return {
+        page: document.documentElement.scrollWidth, viewport: innerWidth,
+        width: pad.width, height: pad.height, padTop: pad.top,
+        submitBottom: submit.bottom, viewportHeight: innerHeight,
+      };
     });
     expect(geometry.page).toBeLessThanOrEqual(geometry.viewport + 1);
     expect(Math.abs(geometry.width - geometry.height)).toBeLessThan(2);
     expect(geometry.width).toBeGreaterThan(280);
+    if (viewport.width > viewport.height) {
+      // Writing and checking must fit together without scrolling on landscape tablets.
+      expect(geometry.padTop).toBeGreaterThanOrEqual(0);
+      expect(geometry.submitBottom).toBeLessThanOrEqual(geometry.viewportHeight - 8);
+    }
   }
 });

@@ -438,3 +438,39 @@ button { min-height: 44px; }
 .icon-button { min-width: 44px; }
 .pencil-switch { min-height: 44px; }
 .pencil-switch input { height: 44px; width: 100%; }
+
+/* In landscape, budget height for the controls before choosing the square's
+   width. The compact header + controls use about 407px; the 450px reserve also
+   leaves room for wrapped recognition feedback and the browser's lower edge.
+   Phone and portrait layouts retain their natural vertical flow. */
+@media (min-width: 900px) and (orientation: landscape) {
+  .app-shell {
+    --practice-pad-size: clamp(322px, calc(100vh - 450px), 650px);
+    --practice-pad-size: clamp(322px, calc(100svh - 450px), 650px);
+    max-width: calc(var(--practice-pad-size) + 450px);
+    padding-inline: 38px;
+  }
+  .site-header { height: 56px; }
+  .intro { padding: 8px 0 10px; }
+  .intro .eyebrow { font-size: 8px; line-height: 12px; margin-bottom: 4px; }
+  .intro h1 { font-size: 30px; line-height: 36px; }
+  .intro-copy > p:last-child { font-size: 12px; line-height: 16px; margin-top: 4px; }
+  .session-stats { padding: 8px 16px; gap: 16px; }
+  .stat { gap: 5px; }
+  .stat-value { font-size: 24px; }
+  .stat-label { line-height: 12px; }
+  .practice-layout { grid-template-columns: minmax(265px, 338px) minmax(0, var(--practice-pad-size)); gap: 36px; }
+  .writing-card-header { min-height: 36px; padding: 6px 14px; }
+  .stroke-counter { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .pad-toolbar { min-height: 45px; padding: 0 11px; }
+  .tool-button { min-height: 44px; }
+  .practice-controls { min-height: 44px; padding: 0; }
+  .pencil-hint { display: none; }
+  .feedback-area { min-height: 80px; padding: 6px 10px; margin: 4px 0 6px; }
+  .primary-button, .secondary-button { min-height: 46px; padding: 10px 16px; }
+  .model-loading { padding: 8px 0; }
+  .model-error { margin: 4px 0 6px; }
+  /* Loading/error information replaces the idle encouragement in this mode. */
+  .writing-section:has(.model-loading, .model-error) .feedback-area { display: none; }
+  .privacy-note { margin-top: 10px; }
+}
