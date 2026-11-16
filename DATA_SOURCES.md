@@ -28,6 +28,10 @@ This extracted/repackaged dataset is an adaptation under **CC BY-SA 3.0**. Its s
 
 The default references use schoolbook-style stroke forms. Handwritten alternatives may legitimately differ, including joined or separated components. The guide shapes are teaching references; they are not a per-pixel grading rule or a claim that only one handwriting style is correct.
 
+## Documentation preview
+
+[`docs/preview-ipad.jpg`](docs/preview-ipad.jpg) captures the published application at an iPad-sized portrait viewport. The screenshot combines the original application interface with scaled and recolored KanjiVG あ paths and new stroke-number markers. The complete preview image is distributed under **CC BY-SA 3.0**, with attribution to Berkopan for the interface composition and Ulrich Apel and KanjiVG contributors for the guide paths. This image license does not change the MIT license of the original application code.
+
 ## Reproduce and verify
 
 Python 3 and an internet connection are sufficient; there are no third-party Python dependencies.

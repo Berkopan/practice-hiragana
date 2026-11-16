@@ -4,6 +4,10 @@ A quiet handwriting practice space for the **46 basic hiragana**, designed aroun
 
 **[Open the app](https://berkopan.github.io/practice-hiragana/)** · [How recognition works](docs/recognition.md) · [Licenses](THIRD_PARTY_NOTICES.md)
 
+<img src="docs/preview-ipad.jpg" alt="The published hiragana app on an iPad-sized portrait screen, showing the あ reference and its numbered drawing guide" width="620" />
+
+*iPad portrait preview. The screenshot is CC BY-SA 3.0; see [guide attribution](DATA_SOURCES.md#documentation-preview).*
+
 ## Practice
 
 | Mode | What you see | What you do |
