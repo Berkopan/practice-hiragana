@@ -18,6 +18,7 @@ const source = `/* Generated from the complete build. Every model/runtime asset 
 const PREFIX = 'hiragana:' + self.registration.scope + ':';
 const CACHE = PREFIX + '${version}';
 const FILES = ${JSON.stringify(files)};
+const STATIC_URLS = new Set(FILES.map(file => new URL(file, self.registration.scope).href));
 const HOME = new URL('./index.html', self.registration.scope).href;
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES.map(file =>
@@ -38,8 +39,14 @@ self.addEventListener('fetch', event => {
     const cache = await caches.open(CACHE);
     // Serve the HTML and chunks from the same installed version, even online.
     // The browser checks sw.js independently for updates on later visits.
-    if (request.mode === 'navigate') return (await cache.match(HOME)) || fetch(request);
-    return (await cache.match(request)) || fetch(request);
+    if (request.mode === 'navigate') return (await cache.match(HOME, { ignoreVary: true })) || fetch(request);
+    // These exact build URLs always contain the same public bytes. Some hosts
+    // send Vary: Origin, but module/style requests and precache requests can
+    // have different Origin headers. Do not turn that into an offline miss.
+    const cached = STATIC_URLS.has(request.url)
+      ? await cache.match(request, { ignoreVary: true })
+      : await cache.match(request);
+    return cached || fetch(request);
   })());
 });
 `;
