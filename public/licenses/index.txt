@@ -1,0 +1,31 @@
+Hiragana practice — licenses and attribution
+
+Original application code: MIT, Copyright (c) 2026 Berkay Sarıca.
+Full license and third-party scope note: app.txt
+Repository and complete notices:
+https://github.com/Berkopan/practice-hiragana/blob/main/THIRD_PARTY_NOTICES.md
+
+Character recognition powered by machine learning from Dariyooo (DaAppLab).
+DaKanji model v2.0: MIT, Copyright (c) 2021 CaptainDario.
+Full license: dakanji.txt
+https://github.com/dariyooo/DaKanji-Single-Kanji-Recognition
+
+KanjiVG stroke guides: CC BY-SA 3.0, Copyright Ulrich Apel.
+46 modern hiragana selected; original path geometry/order preserved;
+SVG wrappers and metadata removed. Extracted data remains CC BY-SA 3.0.
+Full attribution and license: kanjivg.txt
+https://kanjivg.tagaini.net/
+https://creativecommons.org/licenses/by-sa/3.0/
+
+React, React DOM, Scheduler: MIT, Copyright Meta Platforms, Inc. and affiliates.
+Full license: react.txt
+https://github.com/react/react
+
+ONNX Runtime 1.31.1: MIT, Copyright Microsoft Corporation.
+Full license: onnxruntime.txt
+Full upstream component notices: onnxruntime-third-party.txt
+https://github.com/microsoft/onnxruntime
+
+Vite 8.3.8 (build tool): MIT, Copyright VoidZero Inc. and Vite contributors.
+Full license and bundled-dependency notices: vite.txt
+https://github.com/vitejs/vite
